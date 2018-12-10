@@ -5,6 +5,8 @@ jobs:
       TERRAFORM_COMMAND: apply
       TF_VAR_TERRAFORM_STATE_BUCKET: staq-terraform-state
       TF_VAR_ENVIRONMENT: staging
+      TF_VAR_NODE_COUNT: 1
+      TF_VAR_CLUSTER_NAME: k8s-test-staging
     docker:
       - image: sleyva97/terraform:0.0.1
     steps:

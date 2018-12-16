@@ -3,10 +3,10 @@ jobs:
   deploy-staging:
     environment:
       TERRAFORM_COMMAND: apply
-      TF_VAR_TERRAFORM_STATE_BUCKET: staq-k8s-state
-      TF_VAR_ENVIRONMENT: staging
+      TERRAFORM_STATE_BUCKET: staq-k8s-state
+      ENVIRONMENT: staging
       TF_VAR_NODE_COUNT: 1
-      TF_VAR_CLUSTER_NAME: k8s-test-staging
+      TF_VAR_CLUSTER_NAME: k8s-lab-staging
     docker:
       - image: sleyva97/terraform:0.0.1
     steps:
@@ -19,7 +19,7 @@ jobs:
       TF_VAR_TERRAFORM_STATE_BUCKET: staq-k8s-state
       TF_VAR_ENVIRONMENT: prod
       TF_VAR_NODE_COUNT: 3
-      TF_VAR_CLUSTER_NAME: k8s-test-prod
+      TF_VAR_CLUSTER_NAME: k8s-lab-prod
     docker:
       - image: sleyva97/terraform:0.0.1
     steps:

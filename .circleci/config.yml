@@ -3,8 +3,7 @@ jobs:
   deploy-staging:
     environment:
       TERRAFORM_COMMAND: apply
-      TF_LOG: alotoflogs
-      TF_VAR_TERRAFORM_STATE_BUCKET: staq-terraform-state
+      TF_VAR_TERRAFORM_STATE_BUCKET: staq-k8s-state
       TF_VAR_ENVIRONMENT: staging
       TF_VAR_NODE_COUNT: 1
       TF_VAR_CLUSTER_NAME: k8s-test-staging
@@ -17,7 +16,7 @@ jobs:
   deploy-prod:
     environment:
       TERRAFORM_COMMAND: apply
-      TF_VAR_TERRAFORM_STATE_BUCKET: staq-terraform-state
+      TF_VAR_TERRAFORM_STATE_BUCKET: staq-k8s-state
       TF_VAR_ENVIRONMENT: prod
       TF_VAR_NODE_COUNT: 3
       TF_VAR_CLUSTER_NAME: k8s-test-prod

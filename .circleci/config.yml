@@ -62,6 +62,7 @@ workflows:
           requires:
             - plan-staging
       - plan-prod:
+          requires:
             - deploy-staging
       - deploy-prod:
           requires:

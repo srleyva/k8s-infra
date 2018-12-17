@@ -1,5 +1,18 @@
 version: 2
 jobs:
+  plan-staging:
+    environment:
+      TERRAFORM_COMMAND: plan
+      TERRAFORM_STATE_BUCKET: staq-k8s-state
+      ENVIRONMENT: staging
+      TF_VAR_NODE_COUNT: 1
+      TF_VAR_CLUSTER_NAME: k8s-lab-staging
+    docker:
+      - image: sleyva97/terraform:0.0.1
+    steps:
+      - checkout
+      - run : |
+          entrypoint
   deploy-staging:
     environment:
       TERRAFORM_COMMAND: apply
@@ -13,12 +26,25 @@ jobs:
       - checkout
       - run : |
           entrypoint
+  plan-prod:
+    environment:
+      TERRAFORM_COMMAND: plan
+      TERRAFORM_STATE_BUCKET: staq-k8s-state
+      ENVIRONMENT: prod
+      TF_VAR_NODE_COUNT: 1
+      TF_VAR_CLUSTER_NAME: k8s-lab-prod
+    docker:
+      - image: sleyva97/terraform:0.0.1
+    steps:
+      - checkout
+      - run : |
+          entrypoint
   deploy-prod:
     environment:
       TERRAFORM_COMMAND: apply
       TERRAFORM_STATE_BUCKET: staq-k8s-state
       ENVIRONMENT: prod
-      TF_VAR_NODE_COUNT: 3
+      TF_VAR_NODE_COUNT: 1
       TF_VAR_CLUSTER_NAME: k8s-lab-prod
     docker:
       - image: sleyva97/terraform:0.0.1
@@ -31,7 +57,12 @@ workflows:
   version: 2
   build-package-deploy:
     jobs:
-      - deploy-staging
+      - plan-staging
+      - deploy-staging:
+          requires:
+            - plan-staging
+      - plan-prod:
+            - deploy-staging
       - deploy-prod:
           requires:
             - deploy-staging

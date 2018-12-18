@@ -2,7 +2,7 @@ variable CLUSTER_NAME {}
 variable NODE_COUNT {}
 
 variable MACHINE_TYPE {
-  default = " n1-standard-1"
+  default = "n1-standard-1"
 }
 
 resource "google_container_cluster" "primary" {

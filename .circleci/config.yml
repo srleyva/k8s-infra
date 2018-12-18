@@ -31,7 +31,7 @@ jobs:
       TERRAFORM_COMMAND: plan
       TERRAFORM_STATE_BUCKET: staq-k8s-state
       ENVIRONMENT: prod
-      TF_VAR_NODE_COUNT: 1
+      TF_VAR_NODE_COUNT: 3
       TF_VAR_CLUSTER_NAME: k8s-lab-prod
     docker:
       - image: sleyva97/terraform:0.0.1

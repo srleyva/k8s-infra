@@ -33,6 +33,7 @@ jobs:
       ENVIRONMENT: prod
       TF_VAR_NODE_COUNT: 3
       TF_VAR_CLUSTER_NAME: k8s-lab-prod
+      TF_VAR_MACHINE_TYPE: n1-standard-2
     docker:
       - image: sleyva97/terraform:0.0.1
     steps:

@@ -7,8 +7,7 @@ variable MACHINE_TYPE {
 }
 
 resource "google_container_cluster" "primary" {
-  name               = "${var.CLUSTER_NAME}"
-  initial_node_count = "${var.MIN_NODE_COUNT}"
+  name = "${var.CLUSTER_NAME}"
 
   node_pool {
     name = "default-pool"

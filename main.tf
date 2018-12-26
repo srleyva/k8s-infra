@@ -10,7 +10,8 @@ resource "google_container_cluster" "primary" {
   name = "${var.CLUSTER_NAME}"
 
   node_pool {
-    name = "default-pool"
+    name       = "default-pool"
+    node_count = "${var.MIN_NODE_COUNT}"
 
     autoscaling {
       min_node_count = "${var.MIN_NODE_COUNT}"

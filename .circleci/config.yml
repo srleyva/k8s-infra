@@ -5,7 +5,8 @@ jobs:
       TERRAFORM_COMMAND: plan
       TERRAFORM_STATE_BUCKET: staq-k8s-state
       ENVIRONMENT: staging
-      TF_VAR_NODE_COUNT: 1
+      TF_VAR_MIN_NODE_COUNT: 1
+      TF_VAR_MAX_NODE_COUNT: 10
       TF_VAR_CLUSTER_NAME: k8s-lab-staging
     docker:
       - image: sleyva97/terraform:0.0.1
@@ -18,7 +19,8 @@ jobs:
       TERRAFORM_COMMAND: apply
       TERRAFORM_STATE_BUCKET: staq-k8s-state
       ENVIRONMENT: staging
-      TF_VAR_NODE_COUNT: 1
+      TF_VAR_MIN_NODE_COUNT: 1
+      TF_VAR_MAX_NODE_COUNT: 10
       TF_VAR_CLUSTER_NAME: k8s-lab-staging
     docker:
       - image: sleyva97/terraform:0.0.1
@@ -31,7 +33,8 @@ jobs:
       TERRAFORM_COMMAND: plan
       TERRAFORM_STATE_BUCKET: staq-k8s-state
       ENVIRONMENT: prod
-      TF_VAR_NODE_COUNT: 3
+      TF_VAR_MIN_NODE_COUNT: 1
+      TF_VAR_MAX_NODE_COUNT: 10
       TF_VAR_CLUSTER_NAME: k8s-lab-prod
       TF_VAR_MACHINE_TYPE: n1-standard-2
     docker:
@@ -45,8 +48,10 @@ jobs:
       TERRAFORM_COMMAND: apply
       TERRAFORM_STATE_BUCKET: staq-k8s-state
       ENVIRONMENT: prod
-      TF_VAR_NODE_COUNT: 1
+      TF_VAR_MIN_NODE_COUNT: 1
+      TF_VAR_MAX_NODE_COUNT: 10
       TF_VAR_CLUSTER_NAME: k8s-lab-prod
+      TF_VAR_MACHINE_TYPE: n1-standard-2
     docker:
       - image: sleyva97/terraform:0.0.1
     steps:
